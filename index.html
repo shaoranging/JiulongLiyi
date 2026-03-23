@@ -18,6 +18,7 @@
     <!-- Vanta.js for animated background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script src="./lunar-data.js"></script>
 
     <style>
         :root {
@@ -238,6 +239,32 @@
             border: 1px solid rgba(122, 92, 67, 0.18);
             padding: 1.25rem;
         }
+
+        .tool-input {
+            width: 100%;
+            border: 1px solid rgba(122, 92, 67, 0.25);
+            border-radius: 10px;
+            padding: 0.6rem 0.75rem;
+            background: #fff;
+            color: var(--color-text);
+        }
+
+        .tool-label {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        .tool-result {
+            background: #faf7f3;
+            border: 1px dashed rgba(122, 92, 67, 0.3);
+            border-radius: 10px;
+            padding: 0.8rem;
+            font-size: 0.92rem;
+            color: var(--color-text);
+            min-height: 64px;
+        }
         
         /* Responsive design */
         @media (max-width: 768px) {
@@ -353,6 +380,7 @@
           </div>
           <a href="#philosophy" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">服务理念与市场定位</a>
           <a href="#faq" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">常见问题</a>
+          <a href="#calendar-tool" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">公历农历转换工具</a>
           <a href="#compliance-note" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">合规与更新说明</a>
         </div>
       </div>
@@ -1066,10 +1094,85 @@
           <div class="contact-card fade-in">
             <h2 class="text-2xl font-bold serif-font mb-4">合规与信息更新说明</h2>
             <ul class="text-sm text-gray-700 space-y-2">
-              <li>• 本页内容用于服务说明与流程参考，具体服务以热线沟通和签署协议为准。</li>
+              <li>• 本页内容仅用于服务说明与流程参考，具体服务以热线沟通和签署协议为准。</li>
               <li>• 费用、项目边界与执行条件，按当次确认信息及最新政策文件执行。</li>
               <li>• 若遇政策调整或服务升级，页面文案可能更新；最新信息请拨打 96144 核实。</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="calendar-tool" class="py-14 bg-white">
+        <div class="section-shell px-6">
+          <div class="text-center mb-8 fade-in">
+            <h2 class="text-3xl font-bold serif-font mb-3">公历农历转换工具</h2>
+            <p class="text-gray-600">支持 1900-2100 范围内公历与农历双向查询</p>
+          </div>
+          <div class="contact-card fade-in">
+            <h3 class="text-xl font-bold mb-4">公历 / 农历 相互转换</h3>
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold mb-3">公历 → 农历</h4>
+                <label class="tool-label" for="solarDateInput">公历日期</label>
+                <input id="solarDateInput" class="tool-input mb-4" type="date" min="1900-01-31" max="2100-12-31" value="2026-03-23"/>
+                <button id="solarToLunarBtn" class="cta-button" type="button">
+                  <i class="fas fa-calendar-alt"></i>
+                  转换为农历
+                </button>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">农历 → 公历</h4>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="tool-label" for="lunarYearInput">农历年</label>
+                    <input id="lunarYearInput" class="tool-input" type="number" min="1900" max="2100" value="2026"/>
+                  </div>
+                  <div>
+                    <label class="tool-label" for="lunarMonthInput">农历月（1-12）</label>
+                    <input id="lunarMonthInput" class="tool-input" type="number" min="1" max="12" value="2"/>
+                  </div>
+                  <div>
+                    <label class="tool-label" for="lunarDayInput">农历日（1-30）</label>
+                    <input id="lunarDayInput" class="tool-input" type="number" min="1" max="30" value="5"/>
+                  </div>
+                  <div>
+                    <label class="tool-label" for="lunarLeapInput">是否闰月</label>
+                    <select id="lunarLeapInput" class="tool-input">
+                      <option value="false">否</option>
+                      <option value="true">是</option>
+                    </select>
+                  </div>
+                </div>
+                <button id="lunarToSolarBtn" class="cta-button mt-4" type="button">
+                  <i class="fas fa-exchange-alt"></i>
+                  转换为公历
+                </button>
+              </div>
+            </div>
+            <div id="conversionResult" class="tool-result mt-4">等待输入后转换</div>
+          </div>
+          <div class="contact-card mt-8 fade-in">
+            <h3 class="text-xl font-bold mb-4">烧七表计算</h3>
+            <div class="grid md:grid-cols-3 gap-3">
+              <div>
+                <label class="tool-label" for="ritualBaseDateInput">故于日期（公历）</label>
+                <input id="ritualBaseDateInput" class="tool-input" type="date" min="1900-01-31" max="2100-12-31" value="2026-02-23"/>
+              </div>
+              <div class="md:col-span-2 flex items-end">
+                <button id="ritualCalcBtn" class="cta-button w-full md:w-auto" type="button">
+                  <i class="fas fa-calendar-day"></i>
+                  计算烧七日期
+                </button>
+              </div>
+            </div>
+            <div id="ritualResult" class="tool-result mt-4">等待输入故于日期后计算</div>
+            <div class="mt-3 flex items-center gap-3">
+              <button id="ritualCopyBtn" class="cta-button" type="button">
+                <i class="fas fa-copy"></i>
+                一键复制结果
+              </button>
+              <span id="ritualCopyTip" class="text-sm text-gray-600"></span>
+            </div>
           </div>
         </div>
       </section>
@@ -1120,7 +1223,7 @@
           </div>
 
           <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>© 2025 大连市西岗区九龙殡仪服务站. 信息依据官网公开内容整理</p>
+            <p>© 2026 大连市西岗区九龙殡仪服务站. 信息依据官网公开内容整理</p>
           </div>
         </div>
       </footer>
@@ -1268,6 +1371,197 @@
         });
 
         updateActiveTocLink();
+
+        function getLunarPartsBySolarString(solarDateStr) {
+            const data = window.LUNAR_DATA && window.LUNAR_DATA.solarToLunar
+                ? window.LUNAR_DATA.solarToLunar[solarDateStr]
+                : null;
+            if (!data) {
+                return null;
+            }
+            return {
+                year: data.year,
+                month: data.month,
+                day: data.day,
+                isLeap: data.isLeap,
+                fullText: data.fullText
+            };
+        }
+
+        function lunarMonthToCn(month) {
+            const monthMap = {
+                1: '正月', 2: '二月', 3: '三月', 4: '四月', 5: '五月', 6: '六月',
+                7: '七月', 8: '八月', 9: '九月', 10: '十月', 11: '冬月', 12: '腊月'
+            };
+            return monthMap[month] || `${month}月`;
+        }
+
+        function lunarDayToCn(day) {
+            const dayMap = {
+                1: '初一', 2: '初二', 3: '初三', 4: '初四', 5: '初五',
+                6: '初六', 7: '初七', 8: '初八', 9: '初九', 10: '初十',
+                11: '十一', 12: '十二', 13: '十三', 14: '十四', 15: '十五',
+                16: '十六', 17: '十七', 18: '十八', 19: '十九', 20: '二十',
+                21: '廿一', 22: '廿二', 23: '廿三', 24: '廿四', 25: '廿五',
+                26: '廿六', 27: '廿七', 28: '廿八', 29: '廿九', 30: '三十'
+            };
+            return dayMap[day] || `${day}`;
+        }
+
+        function extractGanzhi(fullText) {
+            if (!fullText) {
+                return '';
+            }
+            const m = fullText.match(/([甲乙丙丁戊己庚辛壬癸][子丑寅卯辰巳午未申酉戌亥])年/);
+            return m ? m[1] : '';
+        }
+
+        function formatTraditionalLunar(lunar) {
+            if (!lunar) {
+                return '农历待核对';
+            }
+            const ganzhi = extractGanzhi(lunar.fullText);
+            const yearText = ganzhi ? `${ganzhi}年` : `${lunar.year}年`;
+            const monthText = `${lunar.isLeap ? '闰' : ''}${lunarMonthToCn(lunar.month)}`;
+            const dayText = lunarDayToCn(lunar.day);
+            return `${yearText}${monthText}${dayText}`;
+        }
+
+        function formatDateISO(d) {
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
+        }
+
+        function addDays(baseDate, days) {
+            const d = new Date(baseDate);
+            d.setDate(d.getDate() + days);
+            return d;
+        }
+
+        function renderRitualSchedule() {
+            const baseInput = document.getElementById('ritualBaseDateInput').value;
+            const result = document.getElementById('ritualResult');
+
+            if (!baseInput) {
+                result.textContent = '请先输入故于日期。';
+                return;
+            }
+
+            const baseDate = new Date(`${baseInput}T00:00:00`);
+            // 按当前烧七表示例规则：输出每行节点日期（不含时辰）
+            const schedule = [
+                { label: '故于', offset: 0 },
+                { label: '圆坟', offset: 4 },
+                { label: '三七（遇七）', offset: 21 },
+                { label: '五七', offset: 34 },
+                { label: '七七', offset: 48 },
+                { label: '百日（短百日）', offset: 98 }
+            ];
+
+            const lines = schedule.map(item => {
+                const date = addDays(baseDate, item.offset);
+                const solarStr = formatDateISO(date);
+                const lunar = getLunarPartsBySolarString(solarStr);
+                if (!lunar) {
+                    return `${item.label}：${solarStr} · 农历待核对`;
+                }
+                return `${item.label}：${solarStr} · 农历${formatTraditionalLunar(lunar)}${lunar.isLeap ? '（闰月）' : ''}`;
+            });
+
+            result.innerHTML = lines.join('<br/>');
+            result.dataset.copyText = lines.join('\n');
+        }
+
+        async function copyRitualResult() {
+            const result = document.getElementById('ritualResult');
+            const tip = document.getElementById('ritualCopyTip');
+            const text = result.dataset.copyText || result.textContent || '';
+            if (!text || text.includes('等待输入')) {
+                tip.textContent = '暂无可复制内容，请先计算。';
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(text);
+                tip.textContent = '复制成功，可直接粘贴发送。';
+            } catch (err) {
+                // Fallback for restricted clipboard environments.
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    tip.textContent = '复制成功，可直接粘贴发送。';
+                } catch (e) {
+                    tip.textContent = '复制失败，请手动选中文本复制。';
+                }
+                document.body.removeChild(ta);
+            }
+        }
+
+        function convertSolarToLunar() {
+            const input = document.getElementById('solarDateInput').value;
+            const result = document.getElementById('conversionResult');
+            if (!input) {
+                result.textContent = '请先输入公历日期。';
+                return;
+            }
+            const lunar = getLunarPartsBySolarString(input);
+            if (!lunar) {
+                result.textContent = '转换失败：查表未命中。请确认日期在 1900-2100 范围内。';
+                return;
+            }
+            result.innerHTML = `公历：${input}<br/>农历：${formatTraditionalLunar(lunar)}${lunar.isLeap ? '（闰月）' : ''}<br/>完整：${lunar.fullText}`;
+        }
+
+        function convertLunarToSolar() {
+            const y = Number(document.getElementById('lunarYearInput').value);
+            const m = Number(document.getElementById('lunarMonthInput').value);
+            const d = Number(document.getElementById('lunarDayInput').value);
+            const isLeap = document.getElementById('lunarLeapInput').value === 'true';
+            const result = document.getElementById('conversionResult');
+
+            if (!Number.isInteger(y) || !Number.isInteger(m) || !Number.isInteger(d)) {
+                result.textContent = '请输入有效的农历年月日。';
+                return;
+            }
+            if (y < 1900 || y > 2100 || m < 1 || m > 12 || d < 1 || d > 30) {
+                result.textContent = '超出支持范围：年 1900-2100，月 1-12，日 1-30。';
+                return;
+            }
+
+            const key = `${y}-${m}-${d}-${isLeap ? 1 : 0}`;
+            const found = window.LUNAR_DATA && window.LUNAR_DATA.lunarToSolar
+                ? window.LUNAR_DATA.lunarToSolar[key]
+                : null;
+
+            if (!found) {
+                result.textContent = '未找到对应公历日期。请检查闰月选项或输入是否正确。';
+                return;
+            }
+
+            result.innerHTML = `农历：${y}年 ${isLeap ? '闰' : ''}${m}月${d}日<br/>公历：${found}`;
+        }
+
+        const solarToLunarBtn = document.getElementById('solarToLunarBtn');
+        const lunarToSolarBtn = document.getElementById('lunarToSolarBtn');
+        const ritualCalcBtn = document.getElementById('ritualCalcBtn');
+        const ritualCopyBtn = document.getElementById('ritualCopyBtn');
+        if (solarToLunarBtn && lunarToSolarBtn) {
+            solarToLunarBtn.addEventListener('click', convertSolarToLunar);
+            lunarToSolarBtn.addEventListener('click', convertLunarToSolar);
+            convertSolarToLunar();
+        }
+        if (ritualCalcBtn) {
+            ritualCalcBtn.addEventListener('click', renderRitualSchedule);
+            renderRitualSchedule();
+        }
+        if (ritualCopyBtn) {
+            ritualCopyBtn.addEventListener('click', copyRitualResult);
+        }
     </script>
   
 
