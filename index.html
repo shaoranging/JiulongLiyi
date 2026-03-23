@@ -1,0 +1,1189 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="大连市西岗区九龙殡仪服务站，提供7×24小时殡仪咨询、殡葬一条龙服务、礼仪安葬与特色服务。"/>
+    <title>大连市西岗区九龙殡仪服务站 - 惠民帮办式殡仪服务</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+    <!-- Vanta.js for animated background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+
+    <style>
+        :root {
+            --color-primary: #7A5C43;
+            --color-secondary: #DCC8B4;
+            --color-accent: #9A6E4F;
+            --color-neutral: #F8F4EF;
+            --color-text: #2E241D;
+            --color-text-light: #6F6258;
+        }
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--color-neutral);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .serif-font {
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        /* Animated Background */
+        #vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fixed TOC */
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(212, 181, 160, 0.3);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toc-fixed.active {
+            transform: translateX(0);
+        }
+        
+        .toc-toggle {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1001;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .toc-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+        }
+        
+        /* Main content offset */
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .main-content.toc-open {
+            margin-left: 280px;
+        }
+        
+        /* Hero section styling */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .hero-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            width: 100%;
+        }
+        
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Section styling */
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+            margin: 4rem 0;
+        }
+        
+        /* Typography enhancements */
+        .pullquote {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--color-primary);
+            border-left: 4px solid var(--color-secondary);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        /* Citation styling */
+        .citation {
+            display: inline-block;
+            background: var(--color-secondary);
+            color: var(--color-text);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            margin-left: 0.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .citation:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .section-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .warm-badge {
+            display: inline-block;
+            background: #efe4d9;
+            color: var(--color-primary);
+            border-radius: 999px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .cta-strip {
+            background: linear-gradient(120deg, #f0e2d5, #f7efe8);
+            border-top: 1px solid rgba(122, 92, 67, 0.15);
+            border-bottom: 1px solid rgba(122, 92, 67, 0.15);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-primary);
+            color: #fff;
+            border-radius: 999px;
+            padding: 0.7rem 1.15rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(122, 92, 67, 0.25);
+        }
+
+        .media-credit {
+            font-size: 0.75rem;
+            color: #6f6258;
+            margin-top: 0.75rem;
+        }
+
+        .process-grid .contact-card {
+            border-left: 4px solid #d9c1ab;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-card {
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid rgba(122, 92, 67, 0.18);
+            padding: 1.25rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .toc-fixed {
+                width: 100%;
+            }
+            
+            .main-content.toc-open {
+                margin-left: 0;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Contact info styling */
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(139, 115, 85, 0.1);
+            border: 1px solid rgba(212, 181, 160, 0.3);
+        }
+        
+        .emergency-hotline {
+            background: linear-gradient(135deg, var(--color-accent), #3A5C5F);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .phone-number {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Table styling */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(139, 115, 85, 0.1);
+        }
+        
+        .data-table th {
+            background: var(--color-primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(212, 181, 160, 0.3);
+        }
+        
+        .data-table tr:hover {
+            background: rgba(212, 181, 160, 0.1);
+        }
+    </style>
+</head>
+
+  <body>
+    <!-- TOC Toggle Button -->
+    <button class="toc-toggle" onclick="toggleTOC()" aria-label="切换目录导航" aria-controls="toc" aria-expanded="false" type="button">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed" id="toc">
+      <div class="mb-8">
+        <h3 class="text-lg font-bold serif-font text-gray-800 mb-4">目录导航</h3>
+        <div class="space-y-2">
+          <a href="#hero" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">概览</a>
+          <a href="#services" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">服务项目与内容</a>
+          <div class="ml-4 space-y-1">
+            <a href="#one-stop-service" class="block text-xs text-gray-500 hover:text-blue-600 transition-colors py-0.5">殡仪一条龙服务</a>
+            <a href="#value-added" class="block text-xs text-gray-500 hover:text-blue-600 transition-colors py-0.5">特色与增值服务</a>
+            <a href="#charity" class="block text-xs text-gray-500 hover:text-blue-600 transition-colors py-0.5">公益与特殊服务</a>
+          </div>
+          <a href="#pricing" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">价格与套餐信息</a>
+          <a href="#basic-info" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">基本信息与联系方式</a>
+          <div class="ml-4 space-y-1">
+            <a href="#org-nature" class="block text-xs text-gray-500 hover:text-blue-600 transition-colors py-0.5">机构性质与资质</a>
+            <a href="#contact-info" class="block text-xs text-gray-500 hover:text-blue-600 transition-colors py-0.5">联系方式</a>
+            <a href="#office-address" class="block text-xs text-gray-500 hover:text-blue-600 transition-colors py-0.5">办公地址</a>
+          </div>
+          <a href="#philosophy" class="block text-sm text-gray-600 hover:text-blue-600 transition-colors py-1">服务理念与市场定位</a>
+        </div>
+      </div>
+
+      <div class="border-t pt-4">
+        <p class="text-xs text-gray-500 mb-2">紧急服务热线</p>
+        <div class="bg-blue-50 rounded-lg p-3">
+          <div class="text-lg font-bold text-blue-600">96144</div>
+          <div class="text-xs text-gray-600">24小时服务</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <div id="vanta-bg"></div>
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="hero-grid">
+            <!-- Main Title -->
+            <div class="hero-title fade-in">
+              <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold serif-font text-gray-900 mb-4 leading-tight">
+                <span class="italic text-gray-700">大连九龙</span>
+                <br/>
+                <span class="text-gray-900">殡仪服务站</span>
+              </h1>
+              <span class="warm-badge mb-4">温暖安抚 · 全程帮办</span>
+              <p class="text-xl md:text-2xl text-gray-600 font-light mb-8">
+                60分钟快速响应 · 透明消费 · 7×24小时守护
+              </p>
+            </div>
+
+            <!-- Hero Content Grid -->
+            <div class="hero-content fade-in">
+              <div class="hero-text">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg mb-4">
+                  <h2 class="text-2xl font-bold serif-font mb-4 text-gray-800">值得信赖的殡仪服务伙伴</h2>
+                  <p class="text-gray-700 mb-4">
+                    大连市西岗区九龙殡仪服务站（九龙殡仪）长期提供惠民、帮办式生命服务，覆盖临终咨询、家中治丧、礼仪安葬、海葬及骨灰寄存等服务，以专业流程和透明协议减轻家属负担。
+                  </p>
+                  <div class="flex items-center text-sm text-gray-600">
+                    <i class="fas fa-award mr-2 text-yellow-500"></i>
+                    <span>5A社会组织评估荣誉</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-visual">
+                <img src="https://kimi-web-img.moonshot.cn/img/images.adsttc.com/38a13197cc6f8477e59c700cede72da2b3c9eaf5.jpg" alt="殡仪馆建筑外观" class="w-full h-64 object-cover rounded-2xl shadow-lg" loading="eager" decoding="async" referrerpolicy="no-referrer"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-strip py-6">
+        <div class="section-shell px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <div class="text-sm text-gray-600">紧急联络与到店咨询</div>
+            <div class="text-lg font-semibold text-gray-800">热线 96144 · 大连市西岗区香一街51号</div>
+          </div>
+          <a href="tel:96144" class="cta-button">
+            <i class="fas fa-phone"></i>
+            立即拨打 96144
+          </a>
+        </div>
+      </section>
+
+      <!-- Basic Information Section -->
+      <section id="basic-info" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12 fade-in">
+            <h2 class="text-4xl font-bold serif-font mb-4">基本信息与联系方式</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              依据官网公开信息同步机构资质、热线与地址，确保关键信息准确、清晰、易核验。
+            </p>
+          </div>
+
+          <div class="fade-in mb-10">
+            <div class="contact-card overflow-hidden">
+              <img src="https://images.pexels.com/photos/13290709/pexels-photo-13290709.jpeg?cs=srgb&amp;dl=pexels-blooddrainer-13290709.jpg&amp;fm=jpg" alt="白色花卉细节图片" class="w-full h-64 object-cover rounded-xl" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+              <p class="media-credit">
+                图片来源：
+                <a href="https://www.pexels.com/photo/close-up-photo-of-white-flowers-13290709/" class="citation" target="_blank">Pexels</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- Organization Nature -->
+          <div id="org-nature" class="mb-16 fade-in">
+            <h3 class="text-3xl font-bold serif-font mb-8 text-center">机构性质与资质</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div class="contact-card">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-trophy text-3xl text-yellow-500 mr-4"></i>
+                  <h4 class="text-xl font-bold">社会组织评级</h4>
+                </div>
+                <p class="text-gray-700 mb-4">
+                  根据大连市西岗区人民政府官方网站于<strong>2024年12月16日</strong>发布的公示，大连市西岗区九龙殡仪服务站被评定为最高等级的<strong>&#34;5A级社会组织&#34;</strong>
+                  <a href="https://www.dlxg.gov.cn/xxgk/zdlyxxgk/shzzxxgk/187191.htm" class="citation" target="_blank">[69]</a>。
+                </p>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                  <p class="text-sm text-gray-600">
+                    5A评级意味着在法人治理、财务管理、信息公开、服务效能等方面均达到最高标准。
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-users text-3xl text-blue-500 mr-4"></i>
+                  <h4 class="text-xl font-bold">行业协会成员</h4>
+                </div>
+                <p class="text-gray-700 mb-4">
+                  官网信息显示，九龙殡仪为中国殡葬协会会员单位、辽宁省殡葬协会理事单位、大连市殡葬协会理事单位，并承担本地人道关怀项目委托服务职责
+                  <a href="http://jiulongbinyi.com/default/pc/about/index.html" class="citation" target="_blank">官网</a>。
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <p class="text-sm text-gray-600">
+                    多重会员身份体现了其在业内的专业地位和影响力。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div id="contact-info" class="mb-16 fade-in">
+            <h3 class="text-3xl font-bold serif-font mb-8 text-center">联系方式</h3>
+
+            <div class="emergency-hotline mb-8">
+              <div class="text-lg font-semibold mb-2">24小时服务热线</div>
+              <div class="phone-number">96144</div>
+              <div class="text-base mt-2">全天候殡仪服务专线</div>
+            </div>
+
+            <div class="contact-card">
+              <h4 class="text-xl font-bold mb-6">唯一服务热线</h4>
+              <div class="overflow-x-auto">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>电话号码</th>
+                      <th>服务时段</th>
+                      <th>说明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-bold text-blue-600">96144</td>
+                      <td>7×24小时</td>
+                      <td>咨询、流程指导、服务预约统一由该热线受理</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Office Address -->
+          <div id="office-address" class="fade-in">
+            <h3 class="text-3xl font-bold serif-font mb-8 text-center">办公地址</h3>
+
+            <div class="grid md:grid-cols-1 gap-8">
+              <div class="contact-card">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-map-marker-alt text-3xl text-red-500 mr-4"></i>
+                  <h4 class="text-xl font-bold">服务地址</h4>
+                </div>
+                <div class="space-y-4">
+                  <div class="border-l-4 border-blue-500 pl-4">
+                    <div class="font-bold text-lg">大连市西岗区香一街51号</div>
+                    <p class="text-sm text-gray-600">门店咨询与服务办理请以该地址为准</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Services Section -->
+      <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12 fade-in">
+            <h2 class="text-4xl font-bold serif-font mb-4">服务项目与内容</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              提供从临终到安葬的全流程、一站式解决方案，融入现代礼仪策划和个性化增值服务
+            </p>
+          </div>
+
+          <!-- One-Stop Service -->
+          <div id="one-stop-service" class="mb-16 fade-in">
+            <h3 class="text-3xl font-bold serif-font mb-8 text-center">殡仪一条龙服务</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 process-grid">
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-route text-4xl text-blue-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">1. 专业指导</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 提供7×24小时咨询专线</li>
+                  <li>• 指导办理证明、销户等手续</li>
+                  <li>• 说明完整流程与收费标准</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-file-signature text-4xl text-purple-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">2. 洽谈协议</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 明确服务项目及费用清单</li>
+                  <li>• 根据需求推荐馆厅与用品</li>
+                  <li>• 签署服务协议保障权益</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-hand-holding-medical text-4xl text-teal-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">3. 净身穿衣</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 规范净身流程并保护隐私</li>
+                  <li>• 自下而上完成寿衣穿着</li>
+                  <li>• 全程礼仪化、标准化操作</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-ambulance text-4xl text-red-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">4. 灵车接运</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 预约灵车并协助入馆手续</li>
+                  <li>• 专员全程陪同办理事项</li>
+                  <li>• 可按需安排临时冷藏方案</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-place-of-worship text-4xl text-amber-600 mb-4"></i>
+                  <h4 class="text-xl font-bold">5. 布置告别厅</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 预约告别厅与火化资源</li>
+                  <li>• 完成花圈、挽联、灯光布置</li>
+                  <li>• 可按需设置家庭灵堂</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-user-nurse text-4xl text-pink-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">6. 化妆入殓</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 专业人员自然解冻与护理</li>
+                  <li>• 整容化妆并整理着装</li>
+                  <li>• 完成大殓入棺仪式</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-users text-4xl text-indigo-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">7. 遗体告别</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 专员现场引导告别流程</li>
+                  <li>• 可安排司仪与引导员服务</li>
+                  <li>• 可按需提供摄影摄像记录</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-fire text-4xl text-orange-500 mb-4"></i>
+                  <h4 class="text-xl font-bold">8. 火化入盒</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 陪同家属完成火化前后礼仪</li>
+                  <li>• 协助捡骨、装盒与封盖确认</li>
+                  <li>• 全流程有专员在场支持</li>
+                </ul>
+              </div>
+
+              <div class="contact-card">
+                <div class="text-center mb-6">
+                  <i class="fas fa-urn text-4xl text-gray-700 mb-4"></i>
+                  <h4 class="text-xl font-bold">9. 骨灰寄存/入葬</h4>
+                </div>
+                <ul class="space-y-2 text-gray-700">
+                  <li>• 陪同完成寄存或安葬流程</li>
+                  <li>• 提供落葬礼仪等延伸服务</li>
+                  <li>• 可协助选择墓地用品与吉日</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Value-Added Services -->
+          <div id="value-added" class="mb-16 fade-in">
+            <h3 class="text-3xl font-bold serif-font mb-8 text-center">特色与增值服务</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div class="contact-card">
+                <h4 class="text-lg font-bold mb-4 flex items-center">
+                  <i class="fas fa-seedling mr-3 text-green-500"></i>
+                  礼仪策划
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  根据生平、职业和家属需求定制个性化告别仪式，包含悼词撰写、家祭安排、告别厅设计等服务。
+                  <a href="http://jiulongbinyi.com/default/pc/tsfw/lych/index.html" class="citation" target="_blank">官网</a>。
+                </p>
+                <div class="bg-green-50 p-3 rounded text-sm">
+                  打破传统模式化印象，打造独一无二的人生告别礼
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <h4 class="text-lg font-bold mb-4 flex items-center">
+                  <i class="fas fa-exchange-alt mr-3 text-orange-500"></i>
+                  启攒（迁坟）服务
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  为有迁坟需求的家庭提供专业的重新挖掘、整理、转运及重新安葬服务
+                  <a href="http://jiulongbinyi.com/default/pc/tsfw/index.html" class="citation" target="_blank">官网</a>。
+                </p>
+                <div class="bg-orange-50 p-3 rounded text-sm">
+                  妥善处理迁坟过程中的各项事宜，确保符合民俗礼仪
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <h4 class="text-lg font-bold mb-4 flex items-center">
+                  <i class="fas fa-shipping-fast mr-3 text-blue-500"></i>
+                  海葬与落葬礼仪
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  提供海葬服务及皇家金鼎王落葬礼仪，支持一对一服务流程，兼顾仪式感与实际需求。
+                  <a href="http://jiulongbinyi.com/default/pc/tsfw/index.html" class="citation" target="_blank">官网</a>。
+                </p>
+                <div class="bg-blue-50 p-3 rounded text-sm">
+                  以规范流程和礼仪标准，帮助家属有序完成安葬安排
+                </div>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-8">
+              <div class="contact-card">
+                <h4 class="text-lg font-bold mb-3">灵车接运</h4>
+                <p class="text-sm text-gray-700">专业殡仪车辆接运，服务专员全程陪同办理相关事项。</p>
+              </div>
+              <div class="contact-card">
+                <h4 class="text-lg font-bold mb-3">尊体SPA与临终关怀</h4>
+                <p class="text-sm text-gray-700">通过专业礼仪护理与关怀支持，缓解家属压力并提升服务温度。</p>
+              </div>
+              <div class="contact-card">
+                <h4 class="text-lg font-bold mb-3">殡葬用品</h4>
+                <p class="text-sm text-gray-700">寿服全套百元起步，用品分类清晰，支持按需选配。</p>
+              </div>
+            </div>
+
+            <div class="pullquote text-center">
+              &#34;我们的服务不仅是提供一个流程，更是帮助家属走过哀伤期，让告别成为一次情感的凝聚和生命的回顾。&#34;
+            </div>
+          </div>
+
+          <!-- Charity Services -->
+          <div id="charity" class="fade-in">
+            <h3 class="text-3xl font-bold serif-font mb-8 text-center">公益与特殊服务项目</h3>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="contact-card bg-gradient-to-br from-red-50 to-red-100">
+                <div class="text-center mb-6">
+                  <i class="fas fa-medal text-4xl text-red-500 mb-4"></i>
+                  <h4 class="text-xl font-bold text-red-800">因公牺牲人员免费服务</h4>
+                </div>
+                <p class="text-gray-700 mb-4">
+                  在大连市内四区范围内，对因公牺牲人员提供殡仪全免费服务
+                  <a href="https://www.dl-library.net.cn/wenxian/dlnet/content.php?id=361917" class="citation" target="_blank">[2]</a>
+                  <a href="https://www.dl-library.net.cn/wenxian/dlnet/content.php?id=361899" class="citation" target="_blank">[81]</a>。
+                </p>
+                <ul class="text-sm space-y-1 text-gray-600">
+                  <li>• 提供一套寿衣</li>
+                  <li>• 提供骨灰盒</li>
+                  <li>• 三天殡仪服务</li>
+                </ul>
+              </div>
+
+              <div class="contact-card bg-gradient-to-br from-blue-50 to-blue-100">
+                <div class="text-center mb-6">
+                  <i class="fas fa-heart text-4xl text-blue-500 mb-4"></i>
+                  <h4 class="text-xl font-bold text-blue-800">人体器官捐献者服务</h4>
+                </div>
+                <p class="text-gray-700 mb-4">
+                  成功中标大连医科大学附属第二医院人体器官捐献者基本殡仪服务项目
+                  <a href="http://ggzy.ln.gov.cn/jyfb/lns/zfcg_162906/fscg/jggg/202408/t20240801_5200575.html" class="citation" target="_blank">[1]</a>
+                  <a href="http://ggzy.ln.gov.cn/jyfb/lns/zfcg_162906/fscg/jggg/202408/t20240801_5200575.html" class="citation" target="_blank">[70]</a>。
+                </p>
+                <div class="bg-blue-100 p-3 rounded text-sm">
+                  为无私奉献的器官捐献者提供专业基本殡仪服务
+                </div>
+              </div>
+
+              <div class="contact-card bg-gradient-to-br from-green-50 to-green-100">
+                <div class="text-center mb-6">
+                  <i class="fas fa-hands-helping text-4xl text-green-500 mb-4"></i>
+                  <h4 class="text-xl font-bold text-green-800">社区公益活动</h4>
+                </div>
+                <p class="text-gray-700 mb-4">
+                  承办&#34;殡仪服务进社区&#34;大型公益活动，深入社区提供殡葬知识咨询
+                  <a href="http://news.cntv.cn/20120326/107983.shtml" class="citation" target="_blank">[56]</a>
+                  <a href="http://news.cntv.cn/20120326/107983.shtml" class="citation" target="_blank">[88]</a>。
+                </p>
+                <div class="bg-green-100 p-3 rounded text-sm">
+                  推广&#34;百元办丧事&#34;等惠民服务，倡导文明节俭办丧
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Philosophy Section -->
+      <section id="philosophy" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12 fade-in">
+            <h2 class="text-4xl font-bold serif-font mb-4">服务理念与市场定位</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              以&#34;惠民&#34;为核心宗旨，积极倡导绿色、文明的殡葬新风尚
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12 mb-16">
+            <div class="fade-in">
+              <img src="https://kimi-web-img.moonshot.cn/img/cdn-ildfijn.nitrocdn.com/f2786da61e702058d18b4748389d065946291662.jpg" alt="殡葬服务人员为逝者家属提供关怀服务" class="w-full h-64 object-cover rounded-2xl shadow-lg mb-6" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+
+              <h3 class="text-2xl font-bold serif-font mb-6">惠民与帮办式服务</h3>
+              <p class="text-gray-700 mb-4">
+                官网将我们定位为惠民、帮办式生命服务机构，强调透明消费与全程协助
+                <a href="http://jiulongbinyi.com/default/pc/about/index.html" class="citation" target="_blank">官网</a>，
+                我们的服务不以盈利为唯一目的，而是将社会效益放在首位。
+              </p>
+              <div class="pullquote">
+                &#34;帮办式&#34;服务意味着我们不仅是服务提供者，更是家属在治丧过程中的&#34;帮手&#34;和&#34;顾问&#34;。
+              </div>
+              <p class="text-gray-700">
+                从协助办理各种手续，到指导选择服务项目，再到提供心理慰藉，我们全程陪伴，主动帮助家属解决各种难题，让复杂的治丧过程变得简单、顺畅。
+              </p>
+            </div>
+
+            <div class="fade-in">
+              <img src="https://kimi-web-img.moonshot.cn/img/imgpai.thepaper.cn/57bfc340a81b71282beca8e2f9bb72437c653e98.jpg" alt="绿色殡葬仪式现场" class="w-full h-64 object-cover rounded-2xl shadow-lg mb-6" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+
+              <h3 class="text-2xl font-bold serif-font mb-6">绿色殡葬倡导</h3>
+              <p class="text-gray-700 mb-4">
+                我们积极倡导绿色殡葬理念<a href="http://jiulongbinyi.com/default/pc/tsfw/index.html" class="citation" target="_blank">官网</a>，
+                推行节地生态安葬方式，如树葬、花坛葬、草坪葬、海葬等，以及使用可降解的骨灰容器。
+              </p>
+              <div class="bg-green-50 p-6 rounded-lg mb-6">
+                <h4 class="font-bold mb-3 text-green-800">绿色殡葬优势</h4>
+                <ul class="space-y-2 text-sm text-green-700">
+                  <li>• 节约土地资源，保护环境</li>
+                  <li>• 破除陈规陋习，树立科学殡葬观</li>
+                  <li>• 顺应国家生态文明建设战略方向</li>
+                  <li>• 体现行业先行者的远见和社会责任感</li>
+                </ul>
+              </div>
+              <p class="text-gray-700">
+                我们在实际服务中持续推进节地、生态、文明治丧方式
+                <a href="http://jiulongbinyi.com/default/pc/tsfw/index.html" class="citation" target="_blank">官网</a>，
+                以实际行动践行环保承诺。
+              </p>
+            </div>
+          </div>
+
+          <div class="fade-in">
+            <h3 class="text-2xl font-bold serif-font mb-8 text-center">市场定位与口碑</h3>
+
+            <div class="grid md:grid-cols-3 gap-8">
+              <div class="contact-card text-center">
+                <i class="fas fa-bullseye text-4xl text-red-500 mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">惠民价格定位</h4>
+                <p class="text-gray-700 text-sm">
+                  以公开套餐、协议先行和按需定制为基础，面向不同预算家庭提供可选择的治丧方案。
+                </p>
+              </div>
+
+              <div class="contact-card text-center">
+                <i class="fas fa-thumbs-up text-4xl text-blue-500 mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">本地企业优势</h4>
+                <p class="text-gray-700 text-sm">
+                  深耕大连本地多年，更了解本地风俗习惯和市民需求，能够提供更具针对性的服务。
+                </p>
+              </div>
+
+              <div class="contact-card text-center">
+                <i class="fas fa-star text-4xl text-yellow-500 mb-4"></i>
+                <h4 class="text-lg font-bold mb-3">广受居民欢迎</h4>
+                <p class="text-gray-700 text-sm">
+                  &#34;广受当地居民欢迎&#34;的评价是长期努力服务社区、赢得民心的结果，建立了良好口碑。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12 fade-in">
+            <h2 class="text-4xl font-bold serif-font mb-4">价格与套餐信息</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              贯彻&#34;惠民&#34;宗旨，提供透明、合理且多样化的价格选择
+            </p>
+          </div>
+
+          <div class="fade-in mb-10">
+            <div class="contact-card overflow-hidden">
+              <img src="https://images.pexels.com/photos/80461/candles-light-lights-evening-80461.jpeg?cs=srgb&amp;dl=pexels-pixabay-80461.jpg&amp;fm=jpg" alt="烛光纪念场景图片" class="w-full h-64 object-cover rounded-xl" loading="lazy" decoding="async" referrerpolicy="no-referrer"/>
+              <p class="media-credit">
+                图片来源：
+                <a href="https://www.pexels.com/photo/group-of-candle-lightened-80461/" class="citation" target="_blank">Pexels</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="fade-in mb-12">
+            <div class="contact-card text-center">
+              <h3 class="text-2xl font-bold serif-font mb-6 text-amber-800">殡葬一条龙推荐套餐</h3>
+              <div class="text-2xl font-bold text-amber-800 mb-4">优品3000 · 精品5000 · 尚品7000 · 尊品9000</div>
+              <p class="text-lg text-gray-700 mb-6">
+                家属可根据参与告别仪式人数及治丧需求选择对应套餐，也可由专员按需定制组合服务。
+                <a href="http://jiulongbinyi.com/default/pc/bzfu/index.html#ytl-tc" class="citation" target="_blank">套餐详情</a>。
+              </p>
+              <div class="bg-amber-50 p-6 rounded-lg">
+                <h4 class="font-bold mb-3 text-amber-800">套餐说明</h4>
+                <ul class="text-left space-y-2 text-gray-700">
+                  <li>• 一条龙套餐不含殡仪馆收费项目</li>
+                  <li>• 确定项目后签署服务协议，明确权益与费用</li>
+                  <li>• 可在套餐基础上做增减项，避免重复消费</li>
+                  <li>• 全程由服务专员陪同办理核心环节</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12 fade-in">
+            <div class="contact-card">
+              <h3 class="text-xl font-bold mb-6 flex items-center">
+                <i class="fas fa-layer-group mr-3 text-blue-500"></i>
+                四档套餐建议
+              </h3>
+              <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                <h4 class="font-bold mb-2 text-blue-800">按告别仪式规模选择</h4>
+                <ul class="text-sm space-y-1 text-blue-700">
+                  <li>• 优品套餐：适合简单告别仪式（3000元）</li>
+                  <li>• 精品套餐：适合20人以下小型仪式（5000元）</li>
+                  <li>• 尚品套餐：适合20-50人中型仪式（7000元）</li>
+                  <li>• 尊品套餐：适合50人以上大型仪式（9000元）</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <h3 class="text-xl font-bold mb-6 flex items-center">
+                <i class="fas fa-tags mr-3 text-green-500"></i>
+                惠民与用品价格
+              </h3>
+              <p class="text-gray-700 mb-4">
+                套餐服务与惠民用品分开计价。官网显示寿服全套<strong>百元起步</strong>，可按需选购。
+                <a href="http://jiulongbinyi.com/default/pc/bzyp/shouyi/shouyi_nan/index.html" class="citation" target="_blank">寿服详情</a>。
+              </p>
+              <div class="bg-green-50 p-4 rounded-lg mb-4">
+                <h4 class="font-bold mb-2 text-green-800">价格特点</h4>
+                <ul class="text-sm space-y-1 text-green-700">
+                  <li>• 套餐价格公开，沟通后协议确认</li>
+                  <li>• 用品分类清晰，可按预算灵活配置</li>
+                  <li>• 降低信息不对称，便于家属决策</li>
+                  <li>• 具体费用以签署协议和热线答复为准</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="pullquote text-center mt-12">
+            &#34;价格透明、协议保障、专员全程陪同，是治丧服务更可预期、更安心的基础。&#34;
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="py-16 bg-white">
+        <div class="section-shell px-6">
+          <div class="text-center mb-10 fade-in">
+            <h2 class="text-4xl font-bold serif-font mb-4">常见问题</h2>
+            <p class="text-lg text-gray-600">优先回答家属在紧急阶段最关心的问题，减少信息焦虑。</p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 fade-in">
+            <div class="faq-card">
+              <h3 class="font-bold text-lg mb-2">需要先做什么？</h3>
+              <p class="text-sm text-gray-700">建议第一时间拨打 96144，由专员指导后续流程与所需材料。</p>
+            </div>
+            <div class="faq-card">
+              <h3 class="font-bold text-lg mb-2">到店地址在哪里？</h3>
+              <p class="text-sm text-gray-700">统一咨询及办理地址为大连市西岗区香一街51号。</p>
+            </div>
+            <div class="faq-card">
+              <h3 class="font-bold text-lg mb-2">价格如何确认？</h3>
+              <p class="text-sm text-gray-700">先沟通需求，再签署服务协议，确认项目与费用后执行。</p>
+            </div>
+          </div>
+
+          <div class="text-center mt-10 fade-in">
+            <a href="tel:96144" class="cta-button">
+              <i class="fas fa-phone-volume"></i>
+              立即咨询 96144
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+          <div class="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">大连市西岗区九龙殡仪服务站</h3>
+              <p class="text-gray-400 mb-4">
+                惠民、帮办式殡仪服务机构，提供7×24小时咨询与全流程治丧协助服务。
+              </p>
+              <div class="flex items-center mb-2">
+                <i class="fas fa-phone mr-2 text-blue-400"></i>
+                <span class="text-lg font-bold">96144</span>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-bold mb-4">快速链接</h4>
+              <ul class="space-y-2 text-gray-400">
+                <li>
+                  <a href="#basic-info" class="hover:text-blue-400 transition-colors">基本信息</a>
+                </li>
+                <li>
+                  <a href="#services" class="hover:text-blue-400 transition-colors">服务项目</a>
+                </li>
+                <li>
+                  <a href="#philosophy" class="hover:text-blue-400 transition-colors">服务理念</a>
+                </li>
+                <li>
+                  <a href="#pricing" class="hover:text-blue-400 transition-colors">价格信息</a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-bold mb-4">服务承诺</h4>
+              <ul class="space-y-2 text-gray-400 text-sm">
+                <li>• 24小时全天候服务</li>
+                <li>• 价格透明，诚信经营</li>
+                <li>• 专业团队，贴心服务</li>
+                <li>• 协议先行，明码标价</li>
+                <li>• 5A社会组织评估荣誉</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+            <p>© 2025 大连市西岗区九龙殡仪服务站. 信息依据官网公开内容整理</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Initialize Vanta.js background when available and motion is allowed.
+        if (!prefersReducedMotion && window.VANTA && window.VANTA.WAVES) {
+            window.VANTA.WAVES({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x8b7355,
+                shininess: 30.00,
+                waveHeight: 15.00,
+                waveSpeed: 0.75,
+                zoom: 0.65
+            });
+        }
+
+        // TOC toggle functionality
+        function toggleTOC() {
+            const toc = document.getElementById('toc');
+            const mainContent = document.getElementById('main-content');
+            const toggleButton = document.querySelector('.toc-toggle');
+
+            toc.classList.toggle('active');
+            mainContent.classList.toggle('toc-open');
+            toggleButton.setAttribute('aria-expanded', String(toc.classList.contains('active')));
+        }
+
+        // Close TOC when clicking outside
+        document.addEventListener('click', function(event) {
+            const toc = document.getElementById('toc');
+            const mainContent = document.getElementById('main-content');
+            const toggleButton = document.querySelector('.toc-toggle');
+
+            if (toc.classList.contains('active') &&
+                !toc.contains(event.target) &&
+                event.target !== toggleButton &&
+                !toggleButton.contains(event.target)) {
+                toc.classList.remove('active');
+                mainContent.classList.remove('toc-open');
+                toggleButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // Close TOC on anchor navigation for better mobile UX.
+                const toc = document.getElementById('toc');
+                const mainContent = document.getElementById('main-content');
+                const toggleButton = document.querySelector('.toc-toggle');
+                if (toc.classList.contains('active')) {
+                    toc.classList.remove('active');
+                    mainContent.classList.remove('toc-open');
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        if (prefersReducedMotion) {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        } else if ('IntersectionObserver' in window) {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        } else {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }
+
+        // Ensure external links opened in new tabs are secure.
+        document.querySelectorAll('a[target="_blank"]').forEach(link => {
+            if (!link.hasAttribute('rel')) {
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+
+        // Active TOC link highlighting (throttled with requestAnimationFrame)
+        let isTicking = false;
+        function updateActiveTocLink() {
+            const sections = document.querySelectorAll('section[id], div[id]');
+            const tocLinks = document.querySelectorAll('#toc a[href^="#"]');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('text-blue-600', 'font-semibold');
+                link.classList.add('text-gray-600');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-blue-600', 'font-semibold');
+                }
+            });
+
+            isTicking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!isTicking) {
+                window.requestAnimationFrame(updateActiveTocLink);
+                isTicking = true;
+            }
+        });
+
+        updateActiveTocLink();
+    </script>
+  
+
+</body></html>
