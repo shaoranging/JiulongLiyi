@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">大连市西岗区香一街51号地图预览</title>
+  <desc id="desc">点击可打开地图查看详细位置</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef4fb"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <g stroke="#c7d2fe" stroke-width="1">
+    <path d="M0 50h1200M0 100h1200M0 150h1200M0 200h1200M0 250h1200M0 300h1200M0 350h1200M0 400h1200M0 450h1200"/>
+    <path d="M100 0v500M200 0v500M300 0v500M400 0v500M500 0v500M600 0v500M700 0v500M800 0v500M900 0v500M1000 0v500M1100 0v500"/>
+  </g>
+  <g transform="translate(600 250)">
+    <path d="M0-92c-33 0-60 27-60 60 0 50 60 112 60 112s60-62 60-112c0-33-27-60-60-60z" fill="#dc2626"/>
+    <circle cx="0" cy="-32" r="24" fill="#fff"/>
+    <circle cx="0" cy="-32" r="10" fill="#dc2626"/>
+  </g>
+  <rect x="275" y="64" width="650" height="108" rx="14" fill="#ffffff" fill-opacity="0.92"/>
+  <text x="600" y="110" text-anchor="middle" font-size="40" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'PingFang SC','Microsoft YaHei',sans-serif" fill="#1f2937">大连市西岗区香一街51号</text>
+  <text x="600" y="150" text-anchor="middle" font-size="28" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'PingFang SC','Microsoft YaHei',sans-serif" fill="#4b5563">点击图片可打开地图查看详细位置</text>
+</svg>
